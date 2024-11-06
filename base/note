@@ -1,0 +1,10 @@
+sudo -s
+useradd -m vagrant -s bash
+passwd vagrant
+visudo
+  vagrant ALL=(ALL) NOPASSWD:ALL
+su vagrant
+mkdir ~/.ssh
+wget https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
+sudo apt-get update
+sudo apt install net-tools curl
