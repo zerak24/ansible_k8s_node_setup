@@ -1,0 +1,6 @@
+- name: Etcd
+  hosts: etcd
+  tasks:
+    - name: Install wget
+      apt:
+        name: wget
