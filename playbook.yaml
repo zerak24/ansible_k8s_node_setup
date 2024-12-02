@@ -1,6 +1,26 @@
-- name: Etcd
-  hosts: etcd
+- name: Setup base machine
+  hosts: tester
+  become: true
   tasks:
-    - name: Install wget
-      apt:
+    - name: install wget
+      ansible.builtin.apt:
+        force_apt_get: true
         name: wget
+
+    - name: download setup file
+      ansible.builtin.shell: wget -O setup.sh https://raw.githubusercontent.com/zerak24/k8s-setup/refs/heads/master/script/setup.sh
+
+    - name: grant permission file
+      ansible.builtin.file:
+        path: ./setup.sh
+        mode: 0700
+    
+    - name: setup base virtual machine
+      ansible.builtin.shell: ./setup.sh base --k8s-version v1.31 --cni-version v1.6.0 --runtime-container unix:///var/run/containerd/containerd.sock
+
+    - name: clear setup file
+      ansible.builtin.file:
+        path: ./setup.sh
+        state: absent
+
+- 

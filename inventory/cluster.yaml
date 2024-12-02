@@ -29,12 +29,22 @@ worker:
     worker-2:
       ansible_host: <>
 
+tester:
+  hosts:
+    a0:
+      ansible_host: 192.168.180.154
+  vars:
+    ansible_user: t
+    ansible_password: t
+    ansible_become_password: t
+
 cluster:
   children:
     etcd:
     control:
     worker:
+    tester:
   vars:
     ansible_python_interpreter: /usr/bin/python3.12
-    ansible_sudo: true
+    ansible_become: true
     
