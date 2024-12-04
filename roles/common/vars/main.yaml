@@ -1,0 +1,4 @@
+setup_file_url: https://raw.githubusercontent.com/zerak24/k8s-setup/refs/heads/master/script/setup.sh
+runtime_container: unix:///var/run/containerd/containerd.sock
+cni_version: v1.6.0
+k8s_version: v1.31

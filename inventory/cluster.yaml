@@ -1,49 +1,26 @@
-etcd:
-  hosts:
-    etcd-0:
-      ansible_host: <>
-    etcd-1:
-      ansible_host: <>
-    etcd-2:
-      ansible_host: <>
-  vars:
-    ansible_user: etcd
-    ansible_password: etcd
-    ansible_sudo_password: etcd
-
-control:
-  hosts:
-    control-0:
-      ansible_host: <>
-    control-1:
-      ansible_host: <>
-    control-2:
-      ansible_host: <>
-
-worker:
-  hosts:
-    worker-0:
-      ansible_host: <>
-    worker-1:
-      ansible_host: <>
-    worker-2:
-      ansible_host: <>
-
 tester:
   hosts:
-    a0:
-      ansible_host: 192.168.180.154
+    test-0:
+      ansible_host: 192.168.180.155
   vars:
-    ansible_user: t
-    ansible_password: t
-    ansible_become_password: t
+    ansible_user: test
+    ansible_password: test
+    ansible_become_password: test
+
+etcd:
+  hosts:
+    etcd0:
+      ansible_host: 192.168.180.155
+      etcd_hostname: etcd0
+  vars:
+    ansible_user: test
+    ansible_password: test
+    ansible_become_password: test
 
 cluster:
   children:
-    etcd:
-    control:
-    worker:
     tester:
+    etcd:
   vars:
     ansible_python_interpreter: /usr/bin/python3.12
     ansible_become: true

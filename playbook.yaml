@@ -1,26 +1,20 @@
-- name: Setup base machine
-  hosts: tester
+# - name: Setup base machine
+#   hosts: tester
+#   gather_facts: false
+#   become: true
+#   roles:
+#     - common
+#   vars:
+#     setup_file_url: https://raw.githubusercontent.com/zerak24/k8s-setup/refs/heads/master/script/setup.sh
+#     runtime_container: unix:///var/run/containerd/containerd.sock
+#     cni_version: v1.6.0
+#     k8s_version: v1.31
+
+- name: Setup etcd machine
+  hosts: etcd
+  gather_facts: false
   become: true
-  tasks:
-    - name: install wget
-      ansible.builtin.apt:
-        force_apt_get: true
-        name: wget
-
-    - name: download setup file
-      ansible.builtin.shell: wget -O setup.sh https://raw.githubusercontent.com/zerak24/k8s-setup/refs/heads/master/script/setup.sh
-
-    - name: grant permission file
-      ansible.builtin.file:
-        path: ./setup.sh
-        mode: 0700
-    
-    - name: setup base virtual machine
-      ansible.builtin.shell: ./setup.sh base --k8s-version v1.31 --cni-version v1.6.0 --runtime-container unix:///var/run/containerd/containerd.sock
-
-    - name: clear setup file
-      ansible.builtin.file:
-        path: ./setup.sh
-        state: absent
-
-- 
+  roles:
+    - etcd
+  vars:
+    download_config_url: http://192.168.180.1:3000/file

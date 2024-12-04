@@ -1,0 +1,2 @@
+- name: setup etcd cluster
+  ansible.builtin.shell: ./setup.sh etcd --url {{ download_config_url }} --hostname {{ etcd_hostname }}
