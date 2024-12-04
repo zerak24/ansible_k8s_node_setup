@@ -1,6 +1,6 @@
-tester:
+base:
   hosts:
-    test-0:
+    etcd0:
       ansible_host: 192.168.180.155
   vars:
     ansible_user: test
@@ -19,7 +19,7 @@ etcd:
 
 cluster:
   children:
-    tester:
+    base:
     etcd:
   vars:
     ansible_python_interpreter: /usr/bin/python3.12
