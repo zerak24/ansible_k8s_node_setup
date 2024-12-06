@@ -1,26 +1,36 @@
-base:
-  hosts:
-    etcd0:
-      ansible_host: 192.168.180.155
-  vars:
-    ansible_user: test
-    ansible_password: test
-    ansible_become_password: test
-
 etcd:
   hosts:
     etcd0:
-      ansible_host: 192.168.180.155
+      ansible_host: 192.168.180.159
       etcd_hostname: etcd0
   vars:
-    ansible_user: test
-    ansible_password: test
-    ansible_become_password: test
+    ansible_user: etcd
+    ansible_password: etcd
+    ansible_become_password: etcd
 
-cluster:
+control:
+  hosts:
+    control0:
+      ansible_host: 192.168.180.161
+      etcd_hostname: control0
+  vars:
+    ansible_user: control
+    ansible_password: control
+    ansible_become_password: control
+
+lb:
+  hosts:
+    nginx0:
+      ansible_host: 192.168.180.165
+  vars:
+    ansible_user: lb
+    ansible_password: lb
+    ansible_become_password: lb
+
+base:
   children:
-    base:
     etcd:
+    control:
   vars:
     ansible_python_interpreter: /usr/bin/python3.12
     ansible_become: true
