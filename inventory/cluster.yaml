@@ -2,7 +2,6 @@ etcd:
   hosts:
     etcd0:
       ansible_host: 192.168.180.159
-      etcd_hostname: etcd0
   vars:
     ansible_user: etcd
     ansible_password: etcd
@@ -12,7 +11,6 @@ control:
   hosts:
     control0:
       ansible_host: 192.168.180.161
-      etcd_hostname: control0
   vars:
     ansible_user: control
     ansible_password: control
