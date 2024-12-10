@@ -19,7 +19,7 @@ control:
 lb:
   hosts:
     nginx0:
-      ansible_host: 192.168.180.165
+      ansible_host: 192.168.180.166
   vars:
     ansible_user: lb
     ansible_password: lb
