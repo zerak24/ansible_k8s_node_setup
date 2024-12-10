@@ -28,6 +28,7 @@ apilb:
 base:
   children:
     etcd:
+    apilb:
     control:
   vars:
     ansible_python_interpreter: /usr/bin/python3.12
