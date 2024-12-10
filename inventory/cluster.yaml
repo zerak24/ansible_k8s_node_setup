@@ -16,7 +16,7 @@ control:
     ansible_password: control
     ansible_become_password: control
 
-lb:
+apilb:
   hosts:
     nginx0:
       ansible_host: 192.168.180.166
