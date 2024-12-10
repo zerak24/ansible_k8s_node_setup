@@ -17,7 +17,7 @@
   roles:
     - etcd
   vars:
-    download_config_url: http://192.168.180.157
+    download_config_url: http://192.168.180.158
 
 - name: Setup load balancer machine
   hosts: apilb
@@ -33,5 +33,5 @@
   roles:
     - control
   vars:
-    download_config_url: http://192.168.180.157
+    download_config_url: http://192.168.180.158
 
