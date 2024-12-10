@@ -24,11 +24,12 @@ apilb:
     ansible_user: lb
     ansible_password: lb
     ansible_become_password: lb
+    ansible_python_interpreter: /usr/bin/python3.12
+    ansible_become: true
 
 base:
   children:
     etcd:
-    apilb:
     control:
   vars:
     ansible_python_interpreter: /usr/bin/python3.12
