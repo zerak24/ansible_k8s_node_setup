@@ -1,2 +1,2 @@
 - name: setup control cluster
-  ansible.builtin.shell: ./setup.sh control --url {{ download_config_url }} --hostname {{ control_hostname }}
+  ansible.builtin.shell: ./setup.sh control --url {{ download_config_url }} --hostname {{ inventory_hostname }}
