@@ -2,6 +2,7 @@
   hosts: base
   gather_facts: false
   become: true
+  debugger: always
   roles:
     - common
   vars:
@@ -14,6 +15,7 @@
   hosts: etcd
   gather_facts: false
   become: true
+  debugger: always
   roles:
     - etcd
   vars:
@@ -23,6 +25,7 @@
   hosts: apilb
   gather_facts: false
   become: true
+  debugger: always
   roles:
     - apilb
   vars:
@@ -32,6 +35,7 @@
   hosts: control
   gather_facts: false
   become: true
+  debugger: always
   roles:
     - control
   vars:
