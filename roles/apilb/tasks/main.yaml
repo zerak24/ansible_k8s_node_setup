@@ -1,2 +1,2 @@
 - name: setup lb cluster
-  ansible.builtin.shell: ./setup.sh lb
+  ansible.builtin.shell: ./setup.sh lb --url {{ download_config_url }}

@@ -25,6 +25,8 @@
   become: true
   roles:
     - apilb
+  vars:
+    download_config_url: http://192.168.180.158
 
 - name: Setup control machine
   hosts: control
