@@ -1,2 +1,2 @@
-- name: setup control cluster
+- name: setup control nodes for kubenetes cluster
   ansible.builtin.shell: ./setup.sh control --url {{ download_config_url }} --hostname {{ inventory_hostname }}

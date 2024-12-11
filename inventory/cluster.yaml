@@ -2,10 +2,6 @@ etcd:
   hosts:
     etcd0:
       ansible_host: 192.168.180.159
-  vars:
-    ansible_user: etcd
-    ansible_password: etcd
-    ansible_become_password: etcd
 
 control:
   hosts:
@@ -16,22 +12,13 @@ control:
     ansible_password: control
     ansible_become_password: control
 
-apilb:
+load_balancer:
   hosts:
     nginx0:
       ansible_host: 192.168.180.166
-  vars:
-    ansible_user: lb
-    ansible_password: lb
-    ansible_become_password: lb
-    ansible_python_interpreter: /usr/bin/python3.12
-    ansible_become: true
 
 base:
   children:
     etcd:
     control:
-  vars:
-    ansible_python_interpreter: /usr/bin/python3.12
-    ansible_become: true
     
