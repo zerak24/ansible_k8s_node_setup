@@ -7,10 +7,6 @@ control:
   hosts:
     control0:
       ansible_host: 192.168.180.161
-  vars:
-    ansible_user: control
-    ansible_password: control
-    ansible_become_password: control
 
 load_balancer:
   hosts:

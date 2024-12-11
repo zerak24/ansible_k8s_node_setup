@@ -1,39 +1,35 @@
-# - name: setup base machines
-#   hosts: base
-#   gather_facts: false
-#   become: true
-#   roles:
-#     - common
-#   vars:
-#     setup_file_url: https://raw.githubusercontent.com/zerak24/k8s-setup/refs/heads/master/script/setup.sh
-#     runtime_container: unix:///var/run/containerd/containerd.sock
-#     cni_version: v1.6.0
-#     k8s_version: v1.31
-
-# - name: setup etcd machines
-#   hosts: etcd
-#   gather_facts: false
-#   become: true
-#   roles:
-#     - etcd
-#   vars:
-#     download_config_url: http://192.168.180.158
+- name: setup base machines
+  hosts: base
+  gather_facts: false
+  roles:
+    - common
+  vars:
+    setup_file_url: https://raw.githubusercontent.com/zerak24/k8s-setup/refs/heads/master/script/setup.sh
+    runtime_container: unix:///var/run/containerd/containerd.sock
+    cni_version: v1.6.0
+    k8s_version: v1.31
 
 - name: setup load balancer machines
   hosts: load_balancer
   gather_facts: false
-  become: true
   roles:
     - load_balancer
   vars:
     download_config_url: http://192.168.180.158
 
-# - name: setup control machines
-#   hosts: control
-#   gather_facts: false
-#   become: true
-#   roles:
-#     - control
-#   vars:
-#     download_config_url: http://192.168.180.158
+- name: setup etcd machines
+  hosts: etcd
+  gather_facts: false
+  roles:
+    - etcd
+  vars:
+    download_config_url: http://192.168.180.158
+
+- name: setup control machines
+  hosts: control
+  gather_facts: false
+  roles:
+    - control
+  vars:
+    download_config_url: http://192.168.180.158
 
