@@ -1,0 +1,5 @@
+test:
+  machine:
+    cpus: "1"
+    memory: "1024"
+    disk_size: 70GB

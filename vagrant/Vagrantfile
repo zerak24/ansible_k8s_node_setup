@@ -1,0 +1,53 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+vars = YAML.load_file('vm.yaml')
+
+DEFAULT_NUM_CPUS = "2"
+DEFAULT_MEMORY = "2048"
+DEFAULT_BOX = "bento/ubuntu-24.04"
+DEFAULT_ARCHITECTURE = "amd64"
+
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = DEFAULT_BOX
+  config.vm.box_architecture = DEFAULT_ARCHITECTURE
+  config.vm.box_check_update = false
+  config.ssh.connect_timeout = 3
+
+  config.vm.provider "vmware_desktop" do |vmware|
+    vmware.vmx["numvcpus"] = DEFAULT_NUM_CPUS
+    vmware.vmx["memsize"] = DEFAULT_MEMORY
+    vmware.ssh_info_public = true
+
+    # nat network adapter
+    vmware.vmx["ethernet0.present"] = "TRUE"
+    vmware.vmx["ethernet0.connectiontype"] = "nat"
+    vmware.vmx["ethernet0.virtualDev"] = "e1000"
+    vmware.vmx["ethernet0.addressType"] = "generated"
+
+    # hostonly network adapter
+    vmware.vmx["ethernet1.present"] = "TRUE"
+    vmware.vmx["ethernet1.connectiontype"] = "hostonly"
+    vmware.vmx["ethernet1.virtualDev"] = "e1000"
+    vmware.vmx["ethernet1.addressType"] = "generated"  
+
+  end
+
+  config.vm.provision "enable_eth", type: "shell", path: "script/enable_eth.sh" 
+
+  vars.each do |group, machines|
+    machines.each do |name, val|
+      config.vm.define name do |machine|
+        machine.vm.hostname = name   
+        machine.vm.provider "vmware_desktop" do |vmware|
+          vmware.vmx["displayname"] = name
+          vmware.vmx["numvcpus"] = val["cpus"]
+          vmware.vmx["memsize"] = val["memory"]
+        end 
+      end
+    end
+  end
+end
