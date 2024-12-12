@@ -2,7 +2,9 @@
 # vi: set ft=ruby :
 
 require 'yaml'
-vars = YAML.load_file('vm.yaml')
+
+CONFIG_FILE="machines_config.yaml"
+vars = YAML.load_file(CONFIG_FILE)
 
 DEFAULT_NUM_CPUS = "2"
 DEFAULT_MEMORY = "2048"

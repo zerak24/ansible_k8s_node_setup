@@ -2,4 +2,4 @@ test:
   machine:
     cpus: "1"
     memory: "1024"
-    disk_size: 70GB
+    disk_size: 10GB
