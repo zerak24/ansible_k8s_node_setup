@@ -1,0 +1,7 @@
+- name: get {{ inventory_hostname }}.yaml file
+  copy:
+    src: "{{ data_folder }}/{{ inventory_hostname }}.yaml"
+    dest: .
+
+- name: join worker node
+  shell: kubeadm join --config={{ inventory_hostname }}.yaml
