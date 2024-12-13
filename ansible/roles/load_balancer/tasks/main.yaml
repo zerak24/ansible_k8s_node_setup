@@ -1,2 +1,7 @@
+- name: get kubernetes-api-lb.conf file
+  copy:
+    src: "{{ data_folder }}/kubernetes-api-lb.conf"
+    dest: .
+
 - name: setup load balancer for kubernetes cluster
-  shell: ./setup.sh lb --url {{ download_config_url }}
+  shell: ./setup.sh lb

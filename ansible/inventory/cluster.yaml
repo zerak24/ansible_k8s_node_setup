@@ -1,7 +1,7 @@
 etcd:
   hosts:
     etcd0:
-      ansible_host: 192.168.180.159
+      ansible_host: 10.10.0.208
 
 control:
   hosts:

@@ -1,2 +1,22 @@
+- name: get {{ inventory_hostname }}.yaml file
+  copy:
+    src: "{{ data_folder }}/{{ inventory_hostname }}.yaml"
+    dest: .
+
+- name: get kubelet-{{ inventory_hostname }}.yaml file
+  copy:
+    src: "{{ data_folder }}/kubelet-{{ inventory_hostname }}.yaml"
+    dest: .
+
+- name: get ca.crt file
+  copy:
+    src: "{{ data_folder }}/ca.crt"
+    dest: .
+
+- name: get ca.key file
+  copy:
+    src: "{{ data_folder }}/ca.key"
+    dest: .
+
 - name: setup external etcd for kubernetes cluster
-  ansible.builtin.shell: ./setup.sh etcd --url {{ download_config_url }} --hostname {{ inventory_hostname }}
+  shell: ./setup.sh etcd --hostname {{ inventory_hostname }}

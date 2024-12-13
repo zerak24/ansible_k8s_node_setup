@@ -1,15 +1,12 @@
-- name: install wget
-  ansible.builtin.apt:
-    force_apt_get: true
-    name: wget
-
-- name: download setup file
-  ansible.builtin.shell: wget -O setup.sh {{ setup_file_url }}
+- name: get setup file
+  copy:
+    src: "{{ setup_file }}"
+    dest: .
 
 - name: grant permission file
-  ansible.builtin.file:
-    path: ./setup.sh
+  file:
+    path: setup.sh
     mode: 0700
 
 - name: setup base virtual machine
-  ansible.builtin.shell: ./setup.sh base --k8s-version {{ k8s_version }} --cni-version {{ cni_version }} --runtime-container {{ runtime_container }}
+  shell: ./setup.sh base --k8s-version {{ k8s_version }} --cni-version {{ cni_version }} --runtime-container {{ runtime_container }}

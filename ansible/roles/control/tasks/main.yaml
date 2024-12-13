@@ -1,2 +1,22 @@
+- name: get {{ inventory_hostname }}.yaml file
+  copy:
+    src: "{{ data_folder }}/{{ inventory_hostname }}.yaml"
+    dest: .
+
+- name: get apiserver-etcd-client.crt file
+  copy:
+    src: "{{ data_folder }}/apiserver-etcd-client.crt"
+    dest: .
+
+- name: get apiserver-etcd-client.key file
+  copy:
+    src: "{{ data_folder }}/apiserver-etcd-client.key"
+    dest: .
+
+- name: get ca.crt file
+  copy:
+    src: "{{ data_folder }}/ca.crt"
+    dest: .
+
 - name: setup control nodes for kubenetes cluster
-  ansible.builtin.shell: ./setup.sh control --url {{ download_config_url }} --hostname {{ inventory_hostname }}
+  shell: ./setup.sh control --hostname {{ inventory_hostname }}
