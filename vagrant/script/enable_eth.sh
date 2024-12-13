@@ -3,4 +3,4 @@ cat <<EOF >> /etc/netplan/01-netcfg.yaml
       dhcp4: true
 EOF
 
-netplan apply > /dev/null 2&>1
+netplan apply > /dev/null 2>&1

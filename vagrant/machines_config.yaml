@@ -1,5 +1,5 @@
-test:
-  machine:
+base:
+  etcd0:
     cpus: "1"
     memory: "1024"
     disk_size: 10GB
